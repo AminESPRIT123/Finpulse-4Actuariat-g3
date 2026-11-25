@@ -3,7 +3,8 @@ package tn.esprit.risques.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
-
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -36,8 +37,8 @@ public class RiskAlert {
     @Column(nullable = false, length = 1000)
     private String message;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(columnDefinition = "json")
+    @Convert(converter = FactorsConverter.class)
+    @Column(columnDefinition = "LONGTEXT")
     private Map<String, Object> factors;
 
     private String resolutionComment;
