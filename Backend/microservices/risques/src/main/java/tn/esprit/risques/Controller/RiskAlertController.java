@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/risks/alerts")
 public class RiskAlertController {
 
     private final RiskAlertService service;
-
+    @Value("${server.port}")
+    private String serverPort;
     public RiskAlertController(RiskAlertService service) {
         this.service = service;
     }
@@ -77,5 +81,17 @@ public class RiskAlertController {
         service.deleteAlert(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    // TEST WEIGHTED LOAD BALANCER
+    @GetMapping("/instance")
+    public ResponseEntity<Map<String, String>> getInstance() {
+
+        return ResponseEntity.ok(
+                Map.of(
+                        "service", "RISQUES",
+                        "port", serverPort
+                )
+        );
     }
 }
