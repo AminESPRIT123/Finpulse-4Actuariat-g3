@@ -63,24 +63,24 @@ l'équipe et un service d'identité et d'accès fourni par Keycloak.
   -------------------------------------------------------------------------------------------
   Service           Responsabilité                  Port Technologie   Base de données
   ----------------- ------------------ ----------------- ------------- ----------------------
-  **MS1 --          Entreprise,                     8081 Spring Boot   MySQL
+  **MS1 --          Entreprise,                     8082 Spring Boot   MySQL
   Entreprise &      clients,                                           (`entreprise_db`)
   tiers**           fournisseurs et                                    
                     paramètres                                         
 
-  **MS2 --          Cycle de vie des                8082 Spring Boot   MySQL
+  **MS2 --          Cycle de vie des                8083 Spring Boot   MySQL
   Facturation**     factures et des                                    (`facturation_db`)
                     règlements                                         
 
-  **MS3 --          Mouvements, solde               8083 Spring Boot   MySQL
+  **MS3 --          Mouvements, solde               8084 Spring Boot   MySQL
   Trésorerie**      et prévisions de                                   (`tresorerie_db`)
                     trésorerie                                         
 
-  **MS4 --          Règles de                       8084 Spring Boot   MySQL (`risques_db`)
+  **MS4 --          Règles de                       8085 Spring Boot   MySQL (`risques_db`)
   Risques**         détection et suivi                                 
                     des alertes                                        
 
-  **MS5 --          Historique et                   8085 NestJS ou     MySQL
+  **MS5 --          Historique et                   8086 NestJS ou     MySQL
   Notifications**   lecture des                          FastAPI\*     (`notifications_db`)
                     notifications                                      
 
