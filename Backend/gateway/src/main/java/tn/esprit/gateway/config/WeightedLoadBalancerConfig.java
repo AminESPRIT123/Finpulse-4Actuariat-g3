@@ -1,5 +1,5 @@
 
-package tn.esprit.apigatway.config;
+package tn.esprit.gateway.config;
 
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.context.ConfigurableApplicationContext;
