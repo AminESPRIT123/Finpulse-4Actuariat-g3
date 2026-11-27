@@ -1,5 +1,6 @@
-
 package tn.esprit.gateway.controller;
+
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,13 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @RestController
 public class FallbackController {
 
-
-    //Risque , Les requêtes sont bloquées(OPEN)
     @GetMapping("/fallback/risques")
     public ResponseEntity<Map<String, Object>> risquesFallback() {
         Map<String, Object> response = Map.of(
@@ -25,11 +22,15 @@ public class FallbackController {
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(response);
     }
 
-    //Entreprise
+    @RequestMapping("/fallback/entreprise")
+    public ResponseEntity<Map<String, String>> entrepriseFallback() {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(Map.of(
+                        "service", "ENTREPRISE",
+                        "message", "Le service Entreprise est temporairement indisponible."
+                ));
+    }
 
-
-    //Facturation
-    // Facturation : reponse de secours quand le circuit est ouvert ou que le service est en panne
     @RequestMapping("/fallback/facturation")
     public ResponseEntity<Map<String, Object>> facturationFallback() {
         Map<String, Object> response = Map.of(
@@ -37,11 +38,7 @@ public class FallbackController {
                 "message", "Le microservice Facturation est temporairement indisponible. Les factures seront accessibles des son retour.",
                 "degraded", true
         );
+
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(response);
     }
-
-
-    //Tresorerie
-
-    //notification
 }
