@@ -33,5 +33,16 @@ public class FallbackController {
 
     //Tresorerie
 
-    //notification
+    // Notification
+    @GetMapping("/fallback/notifications")
+    public ResponseEntity<Map<String, Object>> notificationsFallback() {
+
+        Map<String, Object> response = Map.of(
+                "service", "NOTIFICATIONS",
+                "message", "Le microservice Notifications est temporairement indisponible.",
+                "degraded", true
+        );
+
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(response);
+    }
 }
