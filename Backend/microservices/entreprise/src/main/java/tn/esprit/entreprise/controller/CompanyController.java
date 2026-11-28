@@ -1,5 +1,7 @@
 package tn.esprit.entreprise.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +28,8 @@ public class CompanyController {
     }
 
     @GetMapping
-    public List<Company> findAll() {
+    public List<Company> findAll(HttpServletRequest request, HttpServletResponse response) {
+        response.setIntHeader("X-Instance-Port", request.getLocalPort());
         return service.findAll();
     }
 
